@@ -1,0 +1,13 @@
+:root {
+  --primary: #8b5cf6;
+  --background-dark: #111827;
+}
+
+#player-card {
+  background: linear-gradient(145deg, #1f2937, #111827);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+input[type=text] {
+  outline: none;
+}
