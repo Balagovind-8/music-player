@@ -3,45 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spotify Music Player</title>
-
-  <!-- Tailwind CSS -->
+  <title>Jamendo Music Player</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-background-dark min-h-screen flex items-center justify-center p-4 font-sans text-gray-100 transition-colors duration-500">
+<body class="bg-background-dark min-h-screen flex items-center justify-center p-4 font-sans text-gray-100">
 
-  <div id="player-card" class="w-full max-w-lg rounded-2xl p-6 md:p-8 space-y-6">
+<div id="player-card" class="w-full max-w-lg rounded-2xl p-6 md:p-8 space-y-6">
 
-    <!-- Search Section -->
-    <div class="space-y-4">
-      <h2 class="text-lg font-semibold text-primary">Search & Play Spotify Track</h2>
-      <div class="flex space-x-2">
-        <input type="text" id="track-search" placeholder="Enter track name"
-               class="flex-grow p-3 rounded-xl bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-primary focus:border-primary text-sm placeholder-gray-400 transition">
-        <button id="search-btn" class="p-3 bg-primary text-white rounded-xl shadow-md hover:bg-violet-600 transition disabled:opacity-50" aria-label="Search">
-          <i data-lucide="search" class="w-5 h-5"></i>
-        </button>
-      </div>
-      <p id="status-message" class="text-sm text-center min-h-[1.5rem] text-gray-400">Try searching: "Shape of You"</p>
+  <!-- Search Section -->
+  <div class="space-y-4">
+    <h2 class="text-lg font-semibold text-primary">Search & Play Music</h2>
+    <div class="flex space-x-2">
+      <input type="text" id="track-search" placeholder="Enter song or artist"
+             class="flex-grow p-3 rounded-xl bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-primary focus:border-primary text-sm placeholder-gray-400 transition">
+      <button id="search-btn" class="p-3 bg-primary text-white rounded-xl shadow-md hover:bg-violet-600 transition disabled:opacity-50">
+        <i data-lucide="search" class="w-5 h-5"></i>
+      </button>
     </div>
-
-    <!-- Track Info & Spotify Embed -->
-    <div class="flex flex-col space-y-3 bg-gray-800 p-4 rounded-xl items-center justify-center">
-      <div id="spotify-player-container" class="w-full flex justify-center"></div>
-      <h1 id="track-name" class="text-xl font-extrabold truncate">No Track Loaded</h1>
-      <p id="track-artist" class="text-sm text-gray-400 truncate">Streaming via Spotify Embed</p>
-      <div class="flex justify-between w-full text-sm text-gray-300 px-2">
-        <span id="isrc">ISRC: N/A</span>
-        <span id="popularity">Popularity: N/A</span>
-      </div>
-    </div>
-
+    <p id="status-message" class="text-sm text-center min-h-[1.5rem] text-gray-400">Try searching: "love"</p>
   </div>
 
-  <script src="app.js"></script>
+  <!-- Track Info & Player -->
+  <div class="flex flex-col space-y-3 bg-gray-800 p-4 rounded-xl items-center justify-center">
+    <audio id="audio-player" controls class="w-full rounded-lg"></audio>
+    <h1 id="track-name" class="text-xl font-extrabold truncate">No Track Loaded</h1>
+    <p id="track-artist" class="text-sm text-gray-400 truncate">Streaming via Jamendo</p>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
