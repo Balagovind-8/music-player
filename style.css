@@ -1,91 +1,155 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  background: radial-gradient(circle at top, #001f3f, #000);
-  color: #e0e8ff;
+  height: 100vh;
+  background: linear-gradient(145deg, #05060a, #0d1b2a, #000);
   font-family: 'Poppins', sans-serif;
+  color: #e0e6ed;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  margin: 0;
+  overflow: hidden;
 }
 
 .player-container {
-  background: rgba(10, 20, 40, 0.85);
-  border: 2px solid rgba(0, 102, 255, 0.4);
-  border-radius: 20px;
-  box-shadow: 0 0 40px rgba(0, 102, 255, 0.3);
-  padding: 35px;
-  text-align: center;
+  position: relative;
   width: 350px;
-  backdrop-filter: blur(12px);
+  padding: 25px;
+  border-radius: 20px;
+  background: rgba(20, 25, 35, 0.8);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(30, 80, 180, 0.5);
+  text-align: center;
+  z-index: 1;
 }
 
-h1 {
-  font-size: 1.4rem;
-  color: #66aaff;
+.blur-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(30px) brightness(0.4);
+  z-index: -1;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.3rem;
   margin-bottom: 15px;
+  color: #80bfff;
 }
 
 .album-art {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 230px;
+  height: 230px;
+  margin: 0 auto 15px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(0, 120, 255, 0.4);
 }
 
 .album-art img {
-  width: 220px;
-  height: 220px;
-  border-radius: 20px;
-  box-shadow: 0 0 25px rgba(0, 102, 255, 0.6);
-  margin-bottom: 20px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.4s ease;
 }
 
-h2 {
-  font-size: 1.2rem;
-  color: #bcd3ff;
-  margin-bottom: 10px;
+.album-art img.rotate {
+  animation: rotate 8s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#song-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+#song-artist {
+  font-size: 0.9rem;
+  color: #a1b2c8;
+  margin-bottom: 20px;
 }
 
 .controls {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
-  margin-bottom: 10px;
+  gap: 25px;
+  margin-bottom: 15px;
 }
 
 .controls button {
-  background: linear-gradient(145deg, #003366, #001f3f);
-  border: 2px solid #0044cc;
-  border-radius: 50%;
-  color: #bcd3ff;
-  font-size: 1.4rem;
-  margin: 0 10px;
-  padding: 12px;
+  background: transparent;
+  border: none;
+  color: #a8c0ff;
+  font-size: 1.5rem;
   cursor: pointer;
-  transition: 0.3s ease;
-  box-shadow: 0 0 12px rgba(0, 102, 255, 0.4);
+  transition: color 0.3s, transform 0.3s;
 }
 
 .controls button:hover {
-  background: #0044cc;
-  color: white;
+  color: #4fa3ff;
   transform: scale(1.1);
+}
+
+#play {
+  background: linear-gradient(145deg, #1b3b7d, #325ecf);
+  color: white;
+  border-radius: 50%;
+  padding: 18px;
+  font-size: 1.5rem;
+  box-shadow: 0 0 25px rgba(80, 130, 255, 0.5);
+}
+
+#play:hover {
+  background: linear-gradient(145deg, #3b68e5, #507efc);
 }
 
 .progress-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 15px;
+  gap: 10px;
+  margin: 10px 0;
 }
 
 #progress {
-  width: 70%;
-  accent-color: #66aaff;
+  flex-grow: 1;
+  appearance: none;
+  height: 5px;
+  background: #2c3e50;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+#progress::-webkit-slider-thumb {
+  appearance: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #66b3ff;
   cursor: pointer;
 }
 
@@ -94,11 +158,22 @@ h2 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .volume-control input[type="range"] {
-  width: 130px;
-  accent-color: #66aaff;
+  width: 150px;
+  appearance: none;
+  height: 5px;
+  background: #2c3e50;
+  border-radius: 5px;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #66b3ff;
   cursor: pointer;
 }
