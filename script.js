@@ -7,19 +7,28 @@ const currentTimeEl = document.getElementById('current-time');
 const durationEl = document.getElementById('duration');
 const volumeSlider = document.getElementById('volume');
 const title = document.getElementById('song-title');
+const artist = document.getElementById('song-artist');
+const cover = document.getElementById('cover');
+const blurBg = document.getElementById('blur-bg');
 
 const songs = [
   {
     title: 'Ocean Waves',
-    src: 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_0b4df9ef0f.mp3?filename=ocean-waves-110624.mp3'
+    artist: 'Astro Beats',
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    cover: 'ocean-waves.png'
   },
   {
-    title: 'Dreamscape',
-    src: 'https://cdn.pixabay.com/download/audio/2021/11/10/audio_3e6f7991a1.mp3?filename=dreamscape-ambient-10349.mp3'
+    title: 'Neon Nights',
+    artist: 'Retro Future',
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+    cover: 'neon.png'
   },
   {
-    title: 'Deep Night',
-    src: 'https://cdn.pixabay.com/download/audio/2022/07/31/audio_918bd5a31b.mp3?filename=deep-night-ambient-115470.mp3'
+    title: 'Dream Sequence',
+    artist: 'Nebula Flow',
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+    cover: 'dream-seq.png'
   }
 ];
 
@@ -27,25 +36,27 @@ let songIndex = 0;
 
 function loadSong(song) {
   title.textContent = song.title;
+  artist.textContent = song.artist;
   audio.src = song.src;
+  cover.src = song.cover;
+  blurBg.style.backgroundImage = `url(${song.cover})`;
 }
 
 function playSong() {
   audio.play();
   playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+  cover.classList.add('rotate');
 }
 
 function pauseSong() {
   audio.pause();
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
+  cover.classList.remove('rotate');
 }
 
 playBtn.addEventListener('click', () => {
-  if (audio.paused) {
-    playSong();
-  } else {
-    pauseSong();
-  }
+  if (audio.paused) playSong();
+  else pauseSong();
 });
 
 nextBtn.addEventListener('click', () => {
@@ -62,22 +73,19 @@ prevBtn.addEventListener('click', () => {
 
 audio.addEventListener('timeupdate', () => {
   const progressPercent = (audio.currentTime / audio.duration) * 100;
-  progress.value = progressPercent;
+  progress.value = progressPercent || 0;
 
-  let currentMin = Math.floor(audio.currentTime / 60);
-  let currentSec = Math.floor(audio.currentTime % 60);
-  if (currentSec < 10) currentSec = `0${currentSec}`;
-  currentTimeEl.textContent = `${currentMin}:${currentSec}`;
+  const curMin = Math.floor(audio.currentTime / 60);
+  const curSec = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+  currentTimeEl.textContent = `${curMin}:${curSec}`;
 
-  let durationMin = Math.floor(audio.duration / 60);
-  let durationSec = Math.floor(audio.duration % 60);
-  if (durationSec < 10) durationSec = `0${durationSec}`;
-  if (!isNaN(durationMin)) durationEl.textContent = `${durationMin}:${durationSec}`;
+  const durMin = Math.floor(audio.duration / 60);
+  const durSec = Math.floor(audio.duration % 60).toString().padStart(2, '0');
+  if (!isNaN(durMin)) durationEl.textContent = `${durMin}:${durSec}`;
 });
 
 progress.addEventListener('input', () => {
-  const newTime = (progress.value / 100) * audio.duration;
-  audio.currentTime = newTime;
+  audio.currentTime = (progress.value / 100) * audio.duration;
 });
 
 volumeSlider.addEventListener('input', () => {
@@ -91,3 +99,4 @@ audio.addEventListener('ended', () => {
 });
 
 loadSong(songs[songIndex]);
+audio.volume = volumeSlider.value;
