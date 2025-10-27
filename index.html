@@ -1,39 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jamendo Music Player</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetic Music Player</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-background-dark min-h-screen flex items-center justify-center p-4 font-sans text-gray-100">
+<body>
+  <div class="player-container">
+    <div class="art-bg"></div>
+    <div class="player">
+      <h1 class="title">Aesthetic Music Player</h1>
+      <img id="cover" src="https://i.postimg.cc/Mp3vLkM3/music.jpg" alt="Album Art" class="cover" />
+      <h2 id="song-title">Loading...</h2>
+      <audio id="audio"></audio>
 
-<div id="player-card" class="w-full max-w-lg rounded-2xl p-6 md:p-8 space-y-6">
-
-  <!-- Search Section -->
-  <div class="space-y-4">
-    <h2 class="text-lg font-semibold text-primary">Search & Play Music</h2>
-    <div class="flex space-x-2">
-      <input type="text" id="track-search" placeholder="Enter song or artist"
-             class="flex-grow p-3 rounded-xl bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-primary focus:border-primary text-sm placeholder-gray-400 transition">
-      <button id="search-btn" class="p-3 bg-primary text-white rounded-xl shadow-md hover:bg-violet-600 transition disabled:opacity-50">
-        <i data-lucide="search" class="w-5 h-5"></i>
-      </button>
+      <div class="controls">
+        <button id="prev"><i class="fa-solid fa-backward"></i></button>
+        <button id="play"><i class="fa-solid fa-play"></i></button>
+        <button id="next"><i class="fa-solid fa-forward"></i></button>
+      </div>
     </div>
-    <p id="status-message" class="text-sm text-center min-h-[1.5rem] text-gray-400">Try searching: "love"</p>
   </div>
 
-  <!-- Track Info & Player -->
-  <div class="flex flex-col space-y-3 bg-gray-800 p-4 rounded-xl items-center justify-center">
-    <audio id="audio-player" controls class="w-full rounded-lg"></audio>
-    <h1 id="track-name" class="text-xl font-extrabold truncate">No Track Loaded</h1>
-    <p id="track-artist" class="text-sm text-gray-400 truncate">Streaming via Jamendo</p>
-  </div>
-
-</div>
-
-<script src="app.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
 </body>
 </html>
