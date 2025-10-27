@@ -174,3 +174,14 @@ body {
   background: #66b3ff;
   cursor: pointer;
 }
+/* Ensure buttons are clickable */
+.controls button {
+  position: relative;
+  z-index: 2;
+}
+
+/* Make sure the blur background doesn’t block clicks */
+.blur-bg {
+  pointer-events: none;
+}
+
