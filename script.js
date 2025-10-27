@@ -1,43 +1,43 @@
-const audio = document.getElementById('audio');
-const playBtn = document.getElementById('play');
-const nextBtn = document.getElementById('next');
-const prevBtn = document.getElementById('prev');
-const progress = document.getElementById('progress');
-const currentTimeEl = document.getElementById('current-time');
-const durationEl = document.getElementById('duration');
-const volumeSlider = document.getElementById('volume');
-const title = document.getElementById('song-title');
-const artist = document.getElementById('song-artist');
-const cover = document.getElementById('cover');
-const blurBg = document.getElementById('blur-bg');
-
 const songs = [
   {
-    title: 'Ocean Waves',
-    artist: 'Astro Beats',
-    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-    cover: 'ocean-waves.png'
+    title: "Ocean Waves",
+    artist: "Astro Beats",
+    src: "https://p.scdn.co/mp3-preview/6ho0GyrWZN3mhi9zVRW7xi?cid=774b29d4f13844c495f206cafdad9c86",
+    cover: "ocean-waves.png"
   },
   {
-    title: 'Neon Nights',
-    artist: 'Retro Future',
-    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
-    cover: 'neon.png'
+    title: "Neon",
+    artist: "Astro Beats",
+    src: "https://p.scdn.co/mp3-preview/3t0nPz2GGE4tqzYsy93vAb7d42ae?cid=774b29d4f13844c495f206cafdad9c86",
+    cover: "neon.png"
   },
   {
-    title: 'Dream Sequence',
-    artist: 'Nebula Flow',
-    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
-    cover: 'dream-seq.png'
+    title: "Dream Seq",
+    artist: "Astro Beats",
+    src: "https://p.scdn.co/mp3-preview/7hIPlPgH0Hcv5Uq1iW3hAGQFJtU8?cid=774b29d4f13844c495f206cafdad9c86",
+    cover: "dream-seq.png"
   }
 ];
+
+const audio = document.getElementById("audio");
+const playBtn = document.getElementById("play");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+const progress = document.getElementById("progress");
+const currentTimeEl = document.getElementById("current-time");
+const durationEl = document.getElementById("duration");
+const cover = document.getElementById("cover");
+const songTitle = document.getElementById("song-title");
+const songArtist = document.getElementById("song-artist");
+const volume = document.getElementById("volume");
+const blurBg = document.getElementById("blur-bg");
 
 let songIndex = 0;
 let isPlaying = false;
 
 function loadSong(song) {
-  title.textContent = song.title;
-  artist.textContent = song.artist;
+  songTitle.textContent = song.title;
+  songArtist.textContent = song.artist;
   audio.src = song.src;
   cover.src = song.cover;
   blurBg.style.backgroundImage = `url(${song.cover})`;
@@ -47,65 +47,66 @@ function playSong() {
   audio.play();
   isPlaying = true;
   playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-  cover.classList.add('rotate');
 }
 
 function pauseSong() {
   audio.pause();
   isPlaying = false;
   playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-  cover.classList.remove('rotate');
 }
 
-playBtn.addEventListener('click', () => {
-  if (isPlaying) {
-    pauseSong();
-  } else {
-    playSong();
-  }
+playBtn.addEventListener("click", () => {
+  isPlaying ? pauseSong() : playSong();
 });
 
-nextBtn.addEventListener('click', () => {
+nextBtn.addEventListener("click", () => {
   songIndex = (songIndex + 1) % songs.length;
   loadSong(songs[songIndex]);
   playSong();
 });
 
-prevBtn.addEventListener('click', () => {
+prevBtn.addEventListener("click", () => {
   songIndex = (songIndex - 1 + songs.length) % songs.length;
   loadSong(songs[songIndex]);
   playSong();
 });
 
-audio.addEventListener('timeupdate', () => {
-  if (audio.duration) {
-    const progressPercent = (audio.currentTime / audio.duration) * 100;
+audio.addEventListener("timeupdate", (e) => {
+  const { currentTime, duration } = e.srcElement;
+  if (duration) {
+    const progressPercent = (currentTime / duration) * 100;
     progress.value = progressPercent;
 
-    const curMin = Math.floor(audio.currentTime / 60);
-    const curSec = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
-    currentTimeEl.textContent = `${curMin}:${curSec}`;
+    let currentMins = Math.floor(currentTime / 60);
+    let currentSecs = Math.floor(currentTime % 60);
+    let durationMins = Math.floor(duration / 60);
+    let durationSecs = Math.floor(duration % 60);
 
-    const durMin = Math.floor(audio.duration / 60);
-    const durSec = Math.floor(audio.duration % 60).toString().padStart(2, '0');
-    durationEl.textContent = `${durMin}:${durSec}`;
+    if (currentSecs < 10) currentSecs = `0${currentSecs}`;
+    if (durationSecs < 10) durationSecs = `0${durationSecs}`;
+
+    currentTimeEl.textContent = `${currentMins}:${currentSecs}`;
+    durationEl.textContent = `${durationMins}:${durationSecs}`;
   }
 });
 
-progress.addEventListener('input', () => {
-  audio.currentTime = (progress.value / 100) * audio.duration;
+progress.addEventListener("input", (e) => {
+  const { value } = e.target;
+  const duration = audio.duration;
+  if (duration) {
+    audio.currentTime = (value / 100) * duration;
+  }
 });
 
-volumeSlider.addEventListener('input', () => {
-  audio.volume = volumeSlider.value;
+volume.addEventListener("input", () => {
+  audio.volume = volume.value;
 });
 
-audio.addEventListener('ended', () => {
+audio.addEventListener("ended", () => {
   songIndex = (songIndex + 1) % songs.length;
   loadSong(songs[songIndex]);
   playSong();
 });
 
-// Initialize
+// Initial load
 loadSong(songs[songIndex]);
-audio.volume = volumeSlider.value;
