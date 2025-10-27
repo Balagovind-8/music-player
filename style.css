@@ -12,56 +12,81 @@ body {
 }
 
 .player-container {
-  background: rgba(10, 20, 40, 0.8);
-  border: 2px solid rgba(0, 102, 255, 0.3);
+  background: rgba(10, 20, 40, 0.85);
+  border: 2px solid rgba(0, 102, 255, 0.4);
   border-radius: 20px;
-  box-shadow: 0 0 30px rgba(0, 102, 255, 0.4);
-  padding: 30px;
+  box-shadow: 0 0 40px rgba(0, 102, 255, 0.3);
+  padding: 35px;
   text-align: center;
   width: 350px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #66aaff;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.album-art {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .album-art img {
   width: 220px;
   height: 220px;
   border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
-  margin-bottom: 15px;
+  box-shadow: 0 0 25px rgba(0, 102, 255, 0.6);
+  margin-bottom: 20px;
+  object-fit: cover;
+}
+
+h2 {
+  font-size: 1.2rem;
+  color: #bcd3ff;
+  margin-bottom: 10px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 .controls button {
-  background: none;
-  border: none;
-  color: #66aaff;
-  font-size: 1.5rem;
-  margin: 10px;
+  background: linear-gradient(145deg, #003366, #001f3f);
+  border: 2px solid #0044cc;
+  border-radius: 50%;
+  color: #bcd3ff;
+  font-size: 1.4rem;
+  margin: 0 10px;
+  padding: 12px;
   cursor: pointer;
   transition: 0.3s ease;
+  box-shadow: 0 0 12px rgba(0, 102, 255, 0.4);
 }
 
 .controls button:hover {
-  color: #ffffff;
-  transform: scale(1.2);
+  background: #0044cc;
+  color: white;
+  transform: scale(1.1);
 }
 
 .progress-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 #progress {
   width: 70%;
-  cursor: pointer;
   accent-color: #66aaff;
+  cursor: pointer;
 }
 
 .volume-control {
@@ -69,11 +94,11 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .volume-control input[type="range"] {
-  width: 120px;
+  width: 130px;
   accent-color: #66aaff;
   cursor: pointer;
 }
