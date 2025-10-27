@@ -1,104 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", sans-serif;
-  background: radial-gradient(circle at top, #0a0a1a, #000);
-  color: #fff;
+  background: radial-gradient(circle at top, #001f3f, #000);
+  color: #e0e8ff;
+  font-family: 'Poppins', sans-serif;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 100vh;
-  overflow: hidden;
+  margin: 0;
 }
 
 .player-container {
-  position: relative;
-  width: 360px;
-  height: 560px;
-  background: rgba(0, 0, 40, 0.8);
-  border-radius: 25px;
-  box-shadow: 0 0 30px rgba(0, 120, 255, 0.4);
-  overflow: hidden;
+  background: rgba(10, 20, 40, 0.8);
+  border: 2px solid rgba(0, 102, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 102, 255, 0.4);
+  padding: 30px;
+  text-align: center;
+  width: 350px;
   backdrop-filter: blur(10px);
 }
 
-.art-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
-  opacity: 0.3;
-  z-index: 1;
-  filter: blur(12px);
-}
-
-
-.player {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 20px;
-}
-
-.title {
-  font-size: 1.4em;
-  color: #4eaaff;
+h1 {
+  font-size: 1.5rem;
+  color: #66aaff;
   margin-bottom: 10px;
-  text-shadow: 0 0 10px #0077ff;
 }
 
-.cover {
-  width: 250px;
-  height: 250px;
+.album-art img {
+  width: 220px;
+  height: 220px;
   border-radius: 20px;
-  box-shadow: 0 0 20px #0066ff88;
-  margin-top: 15px;
+  box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
   margin-bottom: 15px;
 }
 
-#song-title {
-  font-weight: 500;
-  color: #b0d4ff;
-  margin-bottom: 20px;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-}
-
-button {
+.controls button {
   background: none;
-  border: 2px solid #0077ff;
-  color: #fff;
-  font-size: 1.3em;
-  border-radius: 50%;
-  padding: 12px 16px;
+  border: none;
+  color: #66aaff;
+  font-size: 1.5rem;
+  margin: 10px;
   cursor: pointer;
   transition: 0.3s ease;
-  box-shadow: 0 0 10px #0077ff55;
 }
 
-button:hover {
-  background: #0077ff;
-  box-shadow: 0 0 20px #0077ff;
-  transform: scale(1.1);
+.controls button:hover {
+  color: #ffffff;
+  transform: scale(1.2);
 }
 
-button i {
-  pointer-events: none;
+.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
-@keyframes pulseGlow {
-  0% { box-shadow: 0 0 10px #0077ff; }
-  50% { box-shadow: 0 0 25px #00c3ff; }
-  100% { box-shadow: 0 0 10px #0077ff; }
+#progress {
+  width: 70%;
+  cursor: pointer;
+  accent-color: #66aaff;
 }
 
-.cover {
-  animation: pulseGlow 3s infinite;
+.volume-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
 }
 
+.volume-control input[type="range"] {
+  width: 120px;
+  accent-color: #66aaff;
+  cursor: pointer;
+}
