@@ -2,19 +2,20 @@ const songs = [
   {
     title: "Ocean Waves",
     src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-    cover: "https://i.postimg.cc/WzbybW9x/ocean.jpg"
+    cover: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
   },
   {
     title: "Neon Nights",
     src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-    cover: "https://i.postimg.cc/KYW1cRWs/blue-wave.jpg"
+    cover: "https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?auto=format&fit=crop&w=800&q=80"
   },
   {
     title: "Dream Sequence",
     src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-    cover: "https://i.postimg.cc/GtnwKrJk/galaxy.jpg"
+    cover: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=80"
   }
 ];
+
 
 const audio = document.getElementById('audio');
 const title = document.getElementById('song-title');
