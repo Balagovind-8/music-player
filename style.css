@@ -66,9 +66,6 @@ body {
   transition: transform 0.4s ease;
 }
 
-.album-art img.rotate {
-  animation: rotate 8s linear infinite;
-}
 
 @keyframes rotate {
   from {
