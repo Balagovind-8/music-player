@@ -100,3 +100,13 @@ audio.addEventListener('ended', () => {
 
 loadSong(songs[songIndex]);
 audio.volume = volumeSlider.value;
+
+playBtn.addEventListener("click", () => {
+  if (audio.paused) {
+    audio.play();
+    playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+  } else {
+    audio.pause();
+    playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+  }
+});
