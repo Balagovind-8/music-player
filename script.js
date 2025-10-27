@@ -10,22 +10,18 @@ const title = document.getElementById('song-title');
 
 const songs = [
   {
-    title: "Ocean Waves",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-    cover: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+    title: 'Ocean Waves',
+    src: 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_0b4df9ef0f.mp3?filename=ocean-waves-110624.mp3'
   },
   {
-    title: "Neon Nights",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-    cover: "https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?auto=format&fit=crop&w=800&q=80"
+    title: 'Dreamscape',
+    src: 'https://cdn.pixabay.com/download/audio/2021/11/10/audio_3e6f7991a1.mp3?filename=dreamscape-ambient-10349.mp3'
   },
   {
-    title: "Dream Sequence",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-    cover: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=80"
+    title: 'Deep Night',
+    src: 'https://cdn.pixabay.com/download/audio/2022/07/31/audio_918bd5a31b.mp3?filename=deep-night-ambient-115470.mp3'
   }
 ];
-
 
 let songIndex = 0;
 
@@ -68,7 +64,6 @@ audio.addEventListener('timeupdate', () => {
   const progressPercent = (audio.currentTime / audio.duration) * 100;
   progress.value = progressPercent;
 
-  // Update time display
   let currentMin = Math.floor(audio.currentTime / 60);
   let currentSec = Math.floor(audio.currentTime % 60);
   if (currentSec < 10) currentSec = `0${currentSec}`;
@@ -85,7 +80,6 @@ progress.addEventListener('input', () => {
   audio.currentTime = newTime;
 });
 
-// Volume Control
 volumeSlider.addEventListener('input', () => {
   audio.volume = volumeSlider.value;
 });
@@ -96,5 +90,4 @@ audio.addEventListener('ended', () => {
   playSong();
 });
 
-// Initialize
 loadSong(songs[songIndex]);
