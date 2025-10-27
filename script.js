@@ -33,6 +33,7 @@ const songs = [
 ];
 
 let songIndex = 0;
+let isPlaying = false;
 
 function loadSong(song) {
   title.textContent = song.title;
@@ -44,19 +45,24 @@ function loadSong(song) {
 
 function playSong() {
   audio.play();
-  playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+  isPlaying = true;
+  playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
   cover.classList.add('rotate');
 }
 
 function pauseSong() {
   audio.pause();
-  playBtn.innerHTML = '<i class="fas fa-play"></i>';
+  isPlaying = false;
+  playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
   cover.classList.remove('rotate');
 }
 
 playBtn.addEventListener('click', () => {
-  if (audio.paused) playSong();
-  else pauseSong();
+  if (isPlaying) {
+    pauseSong();
+  } else {
+    playSong();
+  }
 });
 
 nextBtn.addEventListener('click', () => {
@@ -72,16 +78,18 @@ prevBtn.addEventListener('click', () => {
 });
 
 audio.addEventListener('timeupdate', () => {
-  const progressPercent = (audio.currentTime / audio.duration) * 100;
-  progress.value = progressPercent || 0;
+  if (audio.duration) {
+    const progressPercent = (audio.currentTime / audio.duration) * 100;
+    progress.value = progressPercent;
 
-  const curMin = Math.floor(audio.currentTime / 60);
-  const curSec = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
-  currentTimeEl.textContent = `${curMin}:${curSec}`;
+    const curMin = Math.floor(audio.currentTime / 60);
+    const curSec = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+    currentTimeEl.textContent = `${curMin}:${curSec}`;
 
-  const durMin = Math.floor(audio.duration / 60);
-  const durSec = Math.floor(audio.duration % 60).toString().padStart(2, '0');
-  if (!isNaN(durMin)) durationEl.textContent = `${durMin}:${durSec}`;
+    const durMin = Math.floor(audio.duration / 60);
+    const durSec = Math.floor(audio.duration % 60).toString().padStart(2, '0');
+    durationEl.textContent = `${durMin}:${durSec}`;
+  }
 });
 
 progress.addEventListener('input', () => {
@@ -98,15 +106,6 @@ audio.addEventListener('ended', () => {
   playSong();
 });
 
+// Initialize
 loadSong(songs[songIndex]);
 audio.volume = volumeSlider.value;
-
-playBtn.addEventListener("click", () => {
-  if (audio.paused) {
-    audio.play();
-    playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-  } else {
-    audio.pause();
-    playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-  }
-});
